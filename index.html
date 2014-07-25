@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="tofiweb">
+	<head>
+		<title>Hello AngularJS</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    	<script src="js/controller.js"></script>
+    	<link href="css/main.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<div ng-controller="ToDoList">
+		<h1>ToFy Web Client</h1>		 
+
+		<div class="errors" >
+			{{$scope.error}}
+		</div>
+
+		<section>
+			 <h2>Get/Add List:</h2>
+			 <label for="listNameQuery" >List Name:</label>
+			 <input placeholder="list name" ng-model="listNameQuery"  name="listNameQuery"  type="text" />
+			 
+			 <label for="listPasswordQuery" >Password:</label>
+			 <input placeholder="password"  ng-model="listPasswordQuery"  name="listPasswordQuery"  type="text" />
+
+
+			 <button ng-click="getList()">Get List</button>
+			 <button ng-click="addList()">Add List</button>
+		 </section>
+
+		 <section>
+			 <h2>{{listName}}</h2>
+			 <input name="itemname" ng-model="itemname" type="text" />
+			 <button ng-click="addItem()">Add Item</button>
+
+			 <ul class="itemlist" >
+			 	<li ng-repeat="item in list.items" >
+			 		{{item}}
+			 		<button ng-click="deleteItem(item)">x</button>
+			 	</li>
+			 </ul>
+		 </section>
+		 
+		</div>
+	</body>
+</html>
