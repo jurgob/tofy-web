@@ -11,8 +11,8 @@
 		<div ng-controller="ToDoList">
 		<h1>ToFy Web Client</h1>		 
 
-		<div class="errors" >
-			{{$scope.error}}
+		<div ng-show="error"  class="errors" >
+			{{error}}
 		</div>
 
 		<section>
@@ -21,7 +21,7 @@
 			 <input placeholder="list name" ng-model="listNameQuery"  name="listNameQuery"  type="text" />
 			 
 			 <label for="listPasswordQuery" >Password:</label>
-			 <input placeholder="password"  ng-model="listPasswordQuery"  name="listPasswordQuery"  type="text" />
+			 <input placeholder="password"  ng-model="listPasswordQuery"  name="listPasswordQuery"  type="password" />
 
 
 			 <button ng-click="getList()">Get List</button>

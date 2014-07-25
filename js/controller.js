@@ -2,10 +2,6 @@ var toFiWeb = angular.module('tofiweb', []);
 
 toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
 	var restBaseUrl = 'http://tofy.herokuapp.com/api/v1'
-	$scope.list = null;
-	$scope.listName = null;
-	$scope.error = null;
-
 	var errorsMsg = {
 		"400": "Bad request (wrong syntax).",
 		"401": "Unauthorised (wrong password).",
@@ -16,27 +12,36 @@ toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
 		"200": "Ok."
 	}
 
+	$scope.list = null;
+	$scope.listName = null;
+	$scope.error = null;
+
+	function updateError(status){
+		if(status != 200)
+        	$scope.error = errorsMsg[status.toString()]
+        else
+        	$scope.error = null;
+	}//end updateError()
 
 	$scope.getList = function(){
 		if($scope.listPasswordQuery != '')
 			$http.defaults.headers.common['password'] = btoa($scope.listPasswordQuery);
-
 		$http.get(restBaseUrl + '/list/'+$scope.listNameQuery).
 		    success(function(data) {
 		        $scope.list = data.data;
 		        $scope.listName = $scope.listNameQuery;
-
+		        updateError(data.status)
 		    });
 	}//end getList()
 
 	$scope.addList = function(){
 		if($scope.listPasswordQuery != '')
 			$http.defaults.headers.common['password'] = btoa($scope.listPasswordQuery);
-			
 		$http.put(restBaseUrl + '/list/'+$scope.listNameQuery).
 		    success(function(data) {
 		        $scope.list = data.data;
 		        $scope.listName = $scope.listNameQuery;
+		        updateError(data.status)
 		    });
 	}//end addList()	
 
@@ -45,6 +50,7 @@ toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
 		    success(function(data) {
 		        $scope.list = null;
 		        $scope.listName = null;
+		        updateError(data.status)
 		    });
 	}//end deleteList()
 
@@ -52,6 +58,7 @@ toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
 		$http.put(restBaseUrl + '/list/'+$scope.listName+'/item/'+$scope.itemname).
 		    success(function(data) {
 		        $scope.list = data.data;
+		        updateError(data.status)
 		    });
 	}//end addItem()
 
@@ -59,9 +66,9 @@ toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
 		$http.delete(restBaseUrl + '/list/'+$scope.listName+'/item/'+itemName).
 		    success(function(data) {
 		        $scope.list = data.data;
+		        updateError(data.status)
 		    });
 	}//end addItem()
-
 
 }]);//end toFiWeb.controller
 
