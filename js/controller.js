@@ -68,7 +68,8 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 	$scope.addItem = function(){
 		$http.put(restBaseUrl + '/list/'+$scope.list.list_name+'/item/'+$scope.itemname).
 		    success(function(data) {
-		        $scope.list = data.data;
+		        if(!isStatusError(data.status))
+		        	$scope.list = data.data;
 		        updateError(data.status)
 		    });
 	}//end addItem()
@@ -76,7 +77,8 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 	$scope.deleteItem = function(itemName){
 		$http.delete(restBaseUrl + '/list/'+$scope.list.list_name+'/item/'+itemName).
 		    success(function(data) {
-		        $scope.list = data.data;
+		        if(!isStatusError(data.status))
+		        	$scope.list = data.data;
 		        updateError(data.status)
 		    });
 	}//end addItem()
