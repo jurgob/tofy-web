@@ -1,6 +1,6 @@
-var toFiWeb = angular.module('tofiweb', []);
+var toFiWeb = angular.module('tofiweb', ['ngCookies']);
 
-toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
+toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', function($scope, $http, $location ,$cookies ) {
 	var restBaseUrl = 'http://tofy.herokuapp.com/api/v1'
 	var errorsMsg = {
 		"400": "Bad request (wrong syntax).",
@@ -13,8 +13,8 @@ toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
 	}
 
 	$scope.list = null;
-	$scope.listName = null;
 	$scope.error = null;
+	var startPath = $location.path().split('/')
 
 	function updateError(status){
 		if(status != 200)
@@ -23,26 +23,36 @@ toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
         	$scope.error = null;
 	}//end updateError()
 
-	$scope.getList = function(){
-		if($scope.listPasswordQuery != '')
-			$http.defaults.headers.common['password'] = btoa($scope.listPasswordQuery);
-		$http.get(restBaseUrl + '/list/'+$scope.listNameQuery).
-		    success(function(data) {
-		        $scope.list = data.data;
-		        $scope.listName = $scope.listNameQuery;
-		        updateError(data.status)
-		    });
+	function isStatusError(status){
+		return (status != 200)
+	}//end isStatusError()
+
+	function retriveListSuccess(data){
+		if(!isStatusError(data.status)){
+        	$scope.list = data.data;
+        	$location.path($scope.list.list_name);
+        	$cookies['list_'+$scope.list.list_name] = $http.defaults.headers.common['password'];
+        }
+        updateError(data.status)
+	}//end retriveListSuccess()
+
+	$scope.encrypt = function(value){
+		return btoa(value);
+	}
+
+	$scope.getList = function(listname, listpass){
+		if(listpass != ''){
+			$http.defaults.headers.common['password'] = listpass;
+		}
+		$http.get(restBaseUrl + '/list/'+listname).
+		    success(retriveListSuccess);
 	}//end getList()
 
 	$scope.addList = function(){
 		if($scope.listPasswordQuery != '')
 			$http.defaults.headers.common['password'] = btoa($scope.listPasswordQuery);
 		$http.put(restBaseUrl + '/list/'+$scope.listNameQuery).
-		    success(function(data) {
-		        $scope.list = data.data;
-		        $scope.listName = $scope.listNameQuery;
-		        updateError(data.status)
-		    });
+		    success(retriveListSuccess);
 	}//end addList()	
 
 	$scope.deleteList = function(){
@@ -51,11 +61,12 @@ toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
 		        $scope.list = null;
 		        $scope.listName = null;
 		        updateError(data.status)
+		        $location.path('');
 		    });
 	}//end deleteList()
 
 	$scope.addItem = function(){
-		$http.put(restBaseUrl + '/list/'+$scope.listName+'/item/'+$scope.itemname).
+		$http.put(restBaseUrl + '/list/'+$scope.list.list_name+'/item/'+$scope.itemname).
 		    success(function(data) {
 		        $scope.list = data.data;
 		        updateError(data.status)
@@ -63,12 +74,30 @@ toFiWeb.controller('ToDoList', ['$scope', '$http', function($scope, $http ) {
 	}//end addItem()
 
 	$scope.deleteItem = function(itemName){
-		$http.delete(restBaseUrl + '/list/'+$scope.listName+'/item/'+itemName).
+		$http.delete(restBaseUrl + '/list/'+$scope.list.list_name+'/item/'+itemName).
 		    success(function(data) {
 		        $scope.list = data.data;
 		        updateError(data.status)
 		    });
 	}//end addItem()
+	$scope.removeList = function(){
+		delete( $http.defaults.headers.common['password'] )
+		$scope.list = null;
+		$scope.error = null;
+		$location.path('');
+	}//$scope.removeList()
+
+	//start list 
+	if( startPath.length > 1 ){
+		var listName = startPath[1];
+		var listPass = $cookies['list_'+listName];
+		console.log('start listPass: '+listPass)
+		if(typeof(listPass) != 'string')
+			$scope.listNameQuery = listName;
+		else
+			$scope.getList(listName, listPass);
+		console.log('listPass cookie: '+listPass)
+	}
 
 }]);//end toFiWeb.controller
 

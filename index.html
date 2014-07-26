@@ -3,38 +3,45 @@
 	<head>
 		<title>Hello AngularJS</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>
     	<script src="js/controller.js"></script>
     	<link href="css/main.css" rel="stylesheet" type="text/css">
 	</head>
 
 	<body>
 		<div ng-controller="ToDoList">
-		<h1>ToFy Web Client</h1>		 
+		<h1 ng-click="removeList()" >ToFy Web Client</h1>		 
 
 		<div ng-show="error"  class="errors" >
 			{{error}}
 		</div>
 
-		<section>
+		<section ng-hide="list" >
 			 <h2>Get/Add List:</h2>
-			 <label for="listNameQuery" >List Name:</label>
-			 <input placeholder="list name" ng-model="listNameQuery"  name="listNameQuery"  type="text" />
-			 
-			 <label for="listPasswordQuery" >Password:</label>
-			 <input placeholder="password"  ng-model="listPasswordQuery"  name="listPasswordQuery"  type="password" />
-
-
-			 <button ng-click="getList()">Get List</button>
-			 <button ng-click="addList()">Add List</button>
+			 <form novalidate class="addGetListForm">
+				 <div class="formRow" >
+				 	<label for="listNameQuery" >List Name:</label>
+				 	<input placeholder="list name" ng-model="listNameQuery"  name="listNameQuery"  type="text" />
+				 </div>
+				<div class="formRow">
+					 <label for="listPasswordQuery" >Password:</label>
+					 <input placeholder="password"  ng-model="listPasswordQuery"  name="listPasswordQuery"  type="password" />
+				</div>
+				<div>
+					<button ng-click="getList(listNameQuery, encrypt(listPasswordQuery))">Get List</button>
+					<span> / </span>
+					<button ng-click="addList()">Add List</button>
+				 </div>
+			</form>
 		 </section>
 
-		 <section>
-			 <h2>{{listName}}</h2>
+		 <section ng-show="list" >
+			 <h2>{{list.list_name}}</h2>
 			 <input name="itemname" ng-model="itemname" type="text" />
 			 <button ng-click="addItem()">Add Item</button>
 
 			 <ul class="itemlist" >
-			 	<li ng-repeat="item in list.items" >
+			 	<li ng-repeat="item in list.list_items" >
 			 		{{item}}
 			 		<button ng-click="deleteItem(item)">x</button>
 			 	</li>

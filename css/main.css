@@ -1,5 +1,17 @@
+
+
 .errors{
 	border: 1px solid #aa0000;
 	color: #aa0000;
 	padding: 5px;
+}
+
+.addGetListForm{}
+
+.addGetListForm .formRow{
+	padding: 5px 0;
+}
+
+.addGetListForm label{
+	display: block;
 }
