@@ -2,52 +2,58 @@
 <html ng-app="tofiweb">
 	<head>
 		<title>Hello AngularJS</title>
+		<meta name="viewport" content="width=device-width">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>
     	<script src="js/controller.js"></script>
+    	<link href="css/reset.css" rel="stylesheet" type="text/css">
     	<link href="css/main.css" rel="stylesheet" type="text/css">
+
 	</head>
 
 	<body>
-		<div ng-controller="ToDoList">
-		<h1 ng-click="removeList()" >ToFy Web Client</h1>		 
-
-		<div ng-show="error"  class="errors" >
-			{{error}}
-		</div>
-
-		<section ng-hide="list" >
-			 <h2>Get/Add List:</h2>
-			 <form novalidate class="addGetListForm">
-				 <div class="formRow" >
-				 	<label for="listNameQuery" >List Name:</label>
-				 	<input placeholder="list name" ng-model="listNameQuery"  name="listNameQuery"  type="text" />
-				 </div>
-				<div class="formRow">
-					 <label for="listPasswordQuery" >Password:</label>
-					 <input placeholder="password"  ng-model="listPasswordQuery"  name="listPasswordQuery"  type="password" />
+		<div ng-controller="ToDoList"  >
+			<header>
+				<h1 ng-click="removeList()" >ToFy Web Client</h1>		 
+			</header>
+			<div class="mainWrapper" >
+				<div ng-show="error"  class="errors" >
+					{{error}}
 				</div>
-				<div>
-					<button ng-click="getList(listNameQuery, encrypt(listPasswordQuery))">Get List</button>
-					<span> / </span>
-					<button ng-click="addList()">Add List</button>
-				 </div>
-			</form>
-		 </section>
 
-		 <section ng-show="list" >
-			 <h2>{{list.list_name}}</h2>
-			 <input name="itemname" ng-model="itemname" type="text" />
-			 <button ng-click="addItem()">Add Item</button>
+				<section ng-hide="list" class="listForm" >
+					 
+					 <h2>Get/Add List:</h2>
+					 <form novalidate class="addGetListForm">
+						 <div class="formRow" >
+						 	<label for="listNameQuery" >List Name:</label>
+						 	<input placeholder="list name" ng-model="listNameQuery"  name="listNameQuery"  type="text" />
+						 </div>
+						<div class="formRow">
+							 <label for="listPasswordQuery" >Password:</label>
+							 <input placeholder="password"  ng-model="listPasswordQuery"  name="listPasswordQuery"  type="password" />
+						</div>
+						<div class="formActions" >
+							<button ng-click="getList(listNameQuery, encrypt(listPasswordQuery))">Get List</button>
+							<span  > / </span>
+							<button ng-click="addList()">Add List</button>
+						 </div>
+					</form>
+				 </section>
 
-			 <ul class="itemlist" >
-			 	<li ng-repeat="item in list.list_items" >
-			 		{{item}}
-			 		<button ng-click="deleteItem(item)">x</button>
-			 	</li>
-			 </ul>
-		 </section>
-		 
+				 <section ng-show="list"  class="listArea" >
+					 <h2>{{list.list_name}}</h2>
+					 <input name="itemname" ng-model="itemname" type="text" />
+					 <button ng-click="addItem()">Add Item</button>
+
+					 <ul class="itemlist" >
+					 	<li ng-repeat="item in list.list_items" >
+					 		{{item}}
+					 		<button ng-click="deleteItem(item)">x</button>
+					 	</li>
+					 </ul>
+				 </section>
+			</div>
 		</div>
 	</body>
 </html>
