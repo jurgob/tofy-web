@@ -1,6 +1,7 @@
 var toFiWeb = angular.module('tofiweb', ['ngCookies']);
 
 toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', function($scope, $http, $location ,$cookies ) {
+	//CONSTANT
 	var restBaseUrl = 'http://tofy.herokuapp.com/api/v1'
 	var errorsMsg = {
 		"400": "Bad request (wrong syntax).",
@@ -12,6 +13,7 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 		"200": "Ok."
 	}
 
+	//STATE VARIABLE
 	$scope.list = null;
 	$scope.error = null;
 	var startPath = $location.path().split('/')
@@ -51,6 +53,10 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 	$scope.addList = function(){
 		if($scope.listPasswordQuery != '')
 			$http.defaults.headers.common['password'] = btoa($scope.listPasswordQuery);
+
+		$http.defaults.headers.common['Content-Type'] = 'application/json';
+		$http.defaults.headers.put['Content-Type'] = 'application/json';
+
 		$http.put(restBaseUrl + '/list/'+$scope.listNameQuery).
 		    success(retriveListSuccess);
 	}//end addList()	
@@ -72,6 +78,7 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 		        	$scope.list = data.data;
 		        updateError(data.status)
 		    });
+		$scope.itemname = null;
 	}//end addItem()
 
 	$scope.deleteItem = function(itemName){
@@ -102,7 +109,8 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 		return $cookies['list_'+listname]
 	}
 
-	//start list 
+	//START APP
+
 	if( startPath.length > 1 ){
 		var listName = startPath[1];
 		var listPass = $cookies['list_'+listName];
