@@ -123,7 +123,6 @@ header h1{
 	border-radius: 0 5px 5px 0;
 	white-space: nowrap;
 	min-width: 0;
-
 }
 .addItemArea button:after{
 	content: "";
@@ -133,4 +132,7 @@ header h1{
 	float: left;
 }
 
+.startPanel{
+	display:none;
+}
 
