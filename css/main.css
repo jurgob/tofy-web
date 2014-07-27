@@ -2,53 +2,14 @@
 	color: #414141;
 	font-size:13px;
 }
-body{
-
-}
-
 h2{
 	font-size: 15px;
 	margin-bottom: 10px;
 	padding-bottom: 5px;
 	text-transform: uppercase;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid #eee;
 }
-
-.mainWrapper{
-	padding: 10px;
-}
-
-header{
-	padding: 10px;
-	text-align: center; 
-	margin-bottom: 10px;
-	border-bottom: 1px solid #d3e5f3
-}
-
-header h1{
-	font-size: 22px;
-	font-weight: 300;
-	color: #0099cc;
-}
-
-.errors{
-	border: 1px solid #dd0000;
-	color: #dd0000;
-	padding: 10px;
-	margin-bottom: 10px;
-}
-
-
-.addGetListForm label{
-	display: block;
-}
-
-.addGetListForm{}
-
-.addGetListForm .formRow{
-	padding-bottom: 10px;
-}
-.addGetListForm .formActions button{
+button{
 	-webkit-appearance:none;
 	-moz-appearance:none;
 	appearance:none;
@@ -60,13 +21,57 @@ header h1{
 	border-radius: 5px;
 	min-width: 100px;
 }
+input{
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	appearance:none;
+	-webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.mainWrapper{
+	padding: 10px;
+}
+
+header{
+	padding: 10px;
+	text-align: center; 
+	margin-bottom: 10px;
+	border-bottom: 1px solid #156bb5;
+	background-color: #156bb5;
+}
+header h1{
+	font-size: 22px;
+	font-weight: lighter;
+	color: white;
+	
+}
+
+.errors{
+	border: 1px solid #dd0000;
+	color: #dd0000;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+/* ADD / GET LIST AREA  */
+.addGetListForm label{
+	display: block;
+}
+.addGetListForm{}
+.addGetListForm .formRow{
+	padding-bottom: 10px;
+}
+
 .addGetListForm .formActions span{
 	width: 25px;
 	font-size: 18px;
 	display: inline-block;
 	text-align: center;
 }
-
 .addGetListForm label{
 	text-transform: uppercase;
 	font-weight: bold;
@@ -74,10 +79,60 @@ header h1{
 }
 .addGetListForm input{
 	width: 100%;
-	-webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;    
-    box-sizing: border-box;
-    padding: 5px;
+}
+
+/* LIST AREA */
+
+.listArea li{
+	display: block;
+	padding: 10px 0px;
+	border-bottom: 1px solid #eee;
+	font-size: 18px;
+	line-height: 22px;
+}
+.listArea li .close{
+	background-color: #dd0000;
+	border-color: #dd0000;
+	min-width: none!important;
+	padding: none;
+	width: 23px;
+	height: 23px;
+	line-height: 0px;
+	min-width: 0px;
+	font-size: 18px;
+	border-radius: 20px;
+	float: right;	
+}
+.listArea li .close:before{
+	content: "X";
+	clear: both;
+}
+.addItemArea{
+	padding: 15px 0 0 0;
+
+}
+
+.addItemArea{
+}
+.addItemArea input{
+	width: 70%;
+	box-model: inset;
+	border-radius: 5px 0 0 5px;
+}
+.addItemArea button{
+	width: 30%;
+	box-model: inset;
+	border-radius: 0 5px 5px 0;
+	white-space: nowrap;
+	min-width: 0;
+
+}
+.addItemArea button:after{
+	content: "";
+	clear:both;
+}
+.addItemArea input, .addItemArea button{
+	float: left;
 }
 
 

@@ -43,15 +43,16 @@
 
 				 <section ng-show="list"  class="listArea" >
 					 <h2>{{list.list_name}}</h2>
-					 <input name="itemname" ng-model="itemname" type="text" />
-					 <button ng-click="addItem()">Add Item</button>
-
 					 <ul class="itemlist" >
 					 	<li ng-repeat="item in list.list_items" >
 					 		{{item}}
-					 		<button ng-click="deleteItem(item)">x</button>
+					 		<button  class="close" ng-click="deleteItem(item)"></button>
 					 	</li>
 					 </ul>
+					 <div class="addItemArea" >
+					 	<input name="itemname" ng-model="itemname" type="text" />
+					 	<button ng-click="addItem()">Add Item</button>
+					 </div>
 				 </section>
 			</div>
 		</div>
