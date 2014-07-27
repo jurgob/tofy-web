@@ -8,6 +8,7 @@
     	<script src="js/controller.js"></script>
     	<link href="css/reset.css" rel="stylesheet" type="text/css">
     	<link href="css/main.css" rel="stylesheet" type="text/css">
+    	<link rel="stylesheet" media="(min-width: 800px)" href="css/main_desktop.css" />
 
 	</head>
 
@@ -20,9 +21,24 @@
 				<div ng-show="error"  class="errors" >
 					{{error}}
 				</div>
+				<section ng-hide="list" class="startPanel" >
+					<h3>What's Tofy:</h3>
+					<p> With ToFy you can create your online to-do list and share it with your friends. </p>
 
+					<div>
+						<h3>Your Visited Lists:</h3>
+						<p>
+							<ul>
+								<li ng-repeat="item in getVisitedLists()" >
+									<a ng-click="getList(item, getVisitedListPass(item))">{{item}}</a>
+								</li>
+							</ul>
+							
+						</p>
+					</div>
+
+				</section>
 				<section ng-hide="list" class="listForm" >
-					 
 					 <h2>Get/Add List:</h2>
 					 <form novalidate class="addGetListForm">
 						 <div class="formRow" >

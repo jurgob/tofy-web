@@ -89,6 +89,19 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 		$location.path('');
 	}//$scope.removeList()
 
+	$scope.getVisitedLists = function(){
+		var _res = [];
+		Object.keys($cookies).forEach(function(key){
+			if( key.match(/^list_/) )
+				_res.push( key.replace('list_', ''))
+		});
+		return _res;
+	}
+
+	$scope.getVisitedListPass = function(listname){
+		return $cookies['list_'+listname]
+	}
+
 	//start list 
 	if( startPath.length > 1 ){
 		var listName = startPath[1];
@@ -100,6 +113,8 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 			$scope.getList(listName, listPass);
 		console.log('listPass cookie: '+listPass)
 	}
+
+	$scope.getVisitedLists();
 
 }]);//end toFiWeb.controller
 
