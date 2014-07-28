@@ -1,9 +1,14 @@
+
+body{
+	font-size:15px;
+}
 *{
 	color: #414141;
-	font-size:13px;
+	font-size: 1em;	
 }
+
 h2{
-	font-size: 15px;
+	font-size: 1.2em;
 	margin-bottom: 10px;
 	padding-bottom: 5px;
 	text-transform: uppercase;
@@ -43,12 +48,15 @@ header{
 	background-color: #156bb5;
 }
 header h1{
-	font-size: 22px;
+	font-size: 1.8em;
 	font-weight: lighter;
 	color: white;
 	
 }
-
+header .goBack{
+	color: white;
+	float: left;
+}
 .errors{
 	border: 1px solid #dd0000;
 	color: #dd0000;
@@ -67,7 +75,7 @@ header h1{
 
 .addGetListForm .formActions span{
 	width: 25px;
-	font-size: 18px;
+	font-size: 1.2em;
 	display: inline-block;
 	text-align: center;
 }
@@ -82,29 +90,53 @@ header h1{
 
 /* LIST AREA */
 
+
+h2{
+	overflow: auto;
+	width: 100%
+}
+
+.refresh{
+	float: right;;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC1ElEQVRYR8WWx2tWQRTFE7uigiQWcKUbQQUFzcJd0IUIgl3sCxFsYAwENX+BBcECNhAXduyCoBsVVy5UUFDBja4EK4KKBQv+Tph5TCYz38yX55dcOLyZue3Mm/vuvPq6Xpb6Xs5fV5bANDYwBrwGL8D3ajdUlsAuEm43Sb/xvAlOg2u5RP4nATfnZSYbwIcUkVoRUN63YB24UYlEWQLbCL4T9KmQZD+61pi+LAHFHQaawAywBYwKJFvMmo6li1Qi0Ij1QrAUHAMXU+eJfqSxXeDZvmc+CejZSXwCDWjlrKQzQV9jfdWQyeDQYbIRHPaMLzFfEiOghGvBLNAvkOWH2d3XXAbYnQPLPPsuR2HfgF53G9gMhkaSrGT9bBUEFPO5IW7dbjGY48bwj0BOL4EKy5frLMyvgoBMVZQHHJ+fjJWjeJM+ASX+HEkiZ1V4TB9ym87iA0/RzPyeXfMJ+A5fzA60k+FgNVCrzZWBGCpGf8dhOePzMQI6ZzfBM+aTwQiwFYwDaxLZh6DXvWDlMYMpzlxximPx30ALSnUuK08YTHXmfvAQl5MsvjJxPvF8CtQDrKxicMZOfAJ6PW6l/2KuutD554oSnAKqlYNAm3KLWl3zYYxAM4q7XqZODhksVCvvgM4/JNKrLjok9BXoCh3geGoH2kk1ov+BeQEHJR4Pims6dBeoWcx2nNW/J7pOGUxWYFOcs2evHnAI7FXMEIFFKNS3XdFno/rIFXVTER8UcPjN2m1wAlyI3Ya6+dS3XdnE5EguA+yuAHsr/mF8RwmBLraPNk6MgK5V9QA9XZHzerO7FBfdfLJVUpEJ/p5V+h8IHYWSqsJVlPeB2mxR0SlGIX3qj2gfTupcMfmLoh3s6U5y+aQIyGYuOA5GR5LsZn1HLQkotq7Qo0DH4kuPELBJ9T+gVqufCt0Lkh4lYIkMZjABjAVvwKNaH0F34yf9coowGaSMwT/0GnshRWVFQQAAAABJRU5ErkJggg==);
+	background-repeat: no-repeat;
+	background-position: center center;
+	color: transparent;
+	width: 1.1em;
+	height: 1.1em;
+	background-size: 1.1em 1.1em;
+	display: inline-block;
+}
+.refresh:after{
+	content: x;
+	clear: both;
+}
 .listArea li{
 	display: block;
-	padding: 10px 0px;
 	border-bottom: 1px solid #eee;
-	font-size: 18px;
-	line-height: 22px;
+	font-size: 1.2em;
+	line-height: 3em;
+	vertical-align: middle;
+	overflow: auto;
+	width: 100%
 }
 .listArea li .close{
 	background-color: #dd0000;
 	border-color: #dd0000;
 	min-width: none!important;
-	padding: none;
-	width: 23px;
-	height: 23px;
-	line-height: 0px;
+	padding: 0;
 	min-width: 0px;
-	font-size: 18px;
+	line-height: 0px;
+	width: 1.1em;
+	height: 1.1em;
+	font-size: 1em;
 	border-radius: 20px;
 	float: right;	
+	margin-top: 0.8em
+
 }
 .listArea li .close:before{
 	content: "X";
-	clear: both;
 }
 .addItemArea{
 	padding: 15px 0 0 0;
@@ -130,5 +162,10 @@ header h1{
 }
 .addItemArea input, .addItemArea button{
 	float: left;
+}
+/*start panel*/
+.startPanel{
+	padding-bottom: 20px;
+
 }
 

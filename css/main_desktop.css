@@ -1,4 +1,13 @@
-.listForm{
-	width: 300px;
+body{
+	font-size: 20px;
+	background-color: #f3f3f3;
+}
+.toDoList{
+	width: 700px;
 	margin:auto;
+	background-color: white;
+	min-height: 100vh;
+}
+h2{
+	font-size: 22px;
 }
