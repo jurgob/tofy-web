@@ -109,8 +109,11 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 		return $cookies['list_'+listname]
 	}
 
-	//START APP
+	$scope.getCurrentPassword = function(){
+		return $http.defaults.headers.common['password'];
+	}
 
+	//START APP
 	if( startPath.length > 1 ){
 		var listName = startPath[1];
 		var listPass = $cookies['list_'+listName];
