@@ -21,19 +21,32 @@
 				<div ng-show="error"  class="errors" >
 					{{error}}
 				</div>
+				<section ng-show="list"  class="listArea" >
+					 <h2>{{list.list_name}}  <a class="refresh" ng-click="getList(list.list_name, getCurrentPassword())">refresh</a>  </h2>
+					 <ul class="itemlist" >
+					 	<li class="listItem" ng-repeat="item in list.list_items" >
+					 		{{item}}
+					 		<button  class="close" ng-click="deleteItem(item)"></button>
+					 	</li>
+					 </ul>
+					 <div class="addItemArea" >
+					 	<input name="itemname" ng-model="itemname" type="text" />
+					 	<button ng-click="addItem()">Add Item</button>
+					 </div>
+				 </section>
 				<section ng-hide="list" class="startPanel" >
 					<h2>What's Tofy:</h2>
 					<p> With ToFy you can create your online to-do list and share it with your friends. </p>
 					<p> It does not require an account, just put the list's name and a password (it's optional).</p>
 				</section>
-				<!--<section ng-hide="getVisitedLists().lenght <= 0" class="visitedLists" >
+				<section ng-hide="getVisitedLists().length <= 0" class="visitedLists" >
 					<h2>Visited Lists:</h2>
 					<ul>
-						<li ng-repeat="item in getVisitedLists()" >
+						<li ng-class="{selected: item==list.list_name}"  class="listItem"  ng-repeat="item in getVisitedLists()" >
 							<a ng-click="getList(item, getVisitedListPass(item))">{{item}}</a>
 						</li>
 					</ul>
-				</section>-->
+				</section>
 
 				<section ng-hide="list" class="listForm" >
 					 <h2>Get/Add List:</h2>
@@ -54,19 +67,7 @@
 					</form>
 				 </section>
 
-				 <section ng-show="list"  class="listArea" >
-					 <h2>{{list.list_name}}  <a class="refresh" ng-click="getList(list.list_name, getCurrentPassword())">refresh</a>  </h2>
-					 <ul class="itemlist" >
-					 	<li ng-repeat="item in list.list_items" >
-					 		{{item}}
-					 		<button  class="close" ng-click="deleteItem(item)"></button>
-					 	</li>
-					 </ul>
-					 <div class="addItemArea" >
-					 	<input name="itemname" ng-model="itemname" type="text" />
-					 	<button ng-click="addItem()">Add Item</button>
-					 </div>
-				 </section>
+				 
 			</div>
 		</div>
 	</body>

@@ -30,9 +30,11 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 	}//end isStatusError()
 
 	function retriveListSuccess(data){
+		$cookies['test'] = 'test1';
 		if(!isStatusError(data.status)){
         	$scope.list = data.data;
         	$location.path($scope.list.list_name);
+        	
         	$cookies['list_'+$scope.list.list_name] = $http.defaults.headers.common['password'];
         }
         updateError(data.status)

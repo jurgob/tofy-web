@@ -63,6 +63,10 @@ header .goBack{
 	padding: 10px;
 	margin-bottom: 10px;
 }
+section{
+	padding-bottom: 20px;
+}
+
 
 /* ADD / GET LIST AREA  */
 .addGetListForm label{
@@ -111,14 +115,17 @@ h2{
 	content: x;
 	clear: both;
 }
-.listArea li{
+.listItem{
 	display: block;
 	border-bottom: 1px solid #eee;
 	font-size: 1.2em;
-	line-height: 3em;
 	vertical-align: middle;
 	overflow: auto;
-	width: 100%
+	width: 100%;
+	line-height: 2.5em;
+}
+.selected{
+	font-weight: bold;
 }
 .listArea li .close{
 	background-color: #dd0000;
@@ -143,6 +150,8 @@ h2{
 }
 
 .addItemArea{
+	overflow: auto;
+	width: 100%
 }
 .addItemArea input{
 	width: 70%;
@@ -155,10 +164,6 @@ h2{
 	border-radius: 0 5px 5px 0;
 	white-space: nowrap;
 	min-width: 0;
-}
-.addItemArea button:after{
-	content: "";
-	clear:both;
 }
 .addItemArea input, .addItemArea button{
 	float: left;
