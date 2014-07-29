@@ -96,7 +96,7 @@ section{
 
 
 h2{
-	overflow: auto;
+	overflow: hidden;
 	width: 100%
 }
 
@@ -120,7 +120,7 @@ h2{
 	border-bottom: 1px solid #eee;
 	font-size: 1.2em;
 	vertical-align: middle;
-	overflow: auto;
+	overflow: hidden;
 	width: 100%;
 	line-height: 2.5em;
 }
@@ -150,7 +150,7 @@ h2{
 }
 
 .addItemArea{
-	overflow: auto;
+	overflow: hidden;
 	width: 100%
 }
 .addItemArea input{
