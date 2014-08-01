@@ -45,7 +45,7 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 	}
 
 	$scope.getList = function(listname, listpass){
-		if(listpass != ''){
+		if( typeof(listpass) == 'string' && listpass != ''){
 			$http.defaults.headers.common['password'] = listpass;
 		}
 		$http.get(restBaseUrl + '/list/'+listname).
