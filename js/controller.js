@@ -57,7 +57,6 @@ toFiWeb.controller('ToDoList', ['$scope', '$http','$location', '$cookies', funct
 			$http.defaults.headers.common['password'] = btoa($scope.listPasswordQuery);
 
 		$http.defaults.headers.common['Content-Type'] = 'application/json';
-		$http.defaults.headers.put['Content-Type'] = 'application/json';
 
 		$http.put(restBaseUrl + '/list/'+$scope.listNameQuery).
 		    success(retriveListSuccess);
